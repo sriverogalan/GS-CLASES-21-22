@@ -1,4 +1,4 @@
-package exercices.firstExam;
+package exercices.exams;
 
 
 public class AnalisiText {
@@ -48,6 +48,7 @@ public class AnalisiText {
       }
       return false;
     }
+
     public static int longitudParaula(int posicioParaula, char[] fraseCaracter){
       int counter=0;
       boolean isDelimited = false;
@@ -55,8 +56,9 @@ public class AnalisiText {
       for (int i = posicioParaula; i < fraseCaracter.length; i++){
 
         for (int j = 0 ; j < delimitadors.length; j++){
-          if (fraseCaracter[i] == delimitadors[j]){
+          if (fraseCaracter[i] == delimitadors[j]) {
             isDelimited = true;
+            break;
           }
         }
 
@@ -99,11 +101,53 @@ public class AnalisiText {
     return isPalindrome;
   }
 
-  public static void numeroDeParaulesPalindromes(char[] fraseCaracter){
+  public static int numeroDeParaulesPalindromes(char[] fraseCaracter){
+    int count = 0;
+    String string = "";
+    for (int i = 0; i < fraseCaracter.length; i++){
+      if (esIniciDeParaula(i,fraseCaracter)){
+        string += i;
+        if (isPalindrome(string)){
+          count++;
+          string = "";
+        }
+      }
+    }
+    return count;
+  }
+
+
+  public static String[] indicaPalindromes(char[] fraseCaracter){
+    String[] string = new String[0];
     for (int i = 0; i < fraseCaracter.length; i++){
 
     }
+    return string;
   }
+
+  public static int[] invertirArray(int[] matriu){
+    int[] array = new int[matriu.length];
+    for (int i = 0 ; i < matriu.length; i++) {
+      array[i] =matriu[matriu.length-1-i];
+    }
+    return array;
+  }
+
+  public static String[] ordenacioStringLong(String[] matriu){
+      String var = matriu[0];
+      int contador = 0;
+      for (int i = 0 ; i < matriu.length; i++) {
+         if (matriu[i].length() > matriu[contador+1].length()){
+
+         }
+        if (contador < matriu.length-1){
+          contador++;
+        }
+      }
+    return matriu;
+  }
+
+
 
 
 
