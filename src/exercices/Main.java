@@ -1,13 +1,14 @@
 package exercices;
 
-import exercices.toni_profe.Loop;
-import exercices.toni_profe.OrderBy;
-import exercices.toni_profe.first_class.Bebida;
-
-import java.beans.BeanDescriptor;
+import static exercices.exams.AnalisiText.*;
 
 public class Main {
     public static void main(String[] args) {
-        Loop.calculadorParaules();
+      String[] strings = new String[]{ "cinco","u", "do", "tre", "cuat"} ;
+
+      ordenacioStringLong(strings);
     }
+
+
+
 }
