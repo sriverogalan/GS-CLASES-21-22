@@ -133,22 +133,6 @@ public class AnalisiText {
     return array;
   }
 
-  public static String[] ordenacioStringLong(String[] matriu){
-      String var = matriu[0];
-      int contador = 0;
-      for (int i = 0 ; i < matriu.length; i++) {
-         if (matriu[i].length() > matriu[contador+1].length()){
-
-         }
-        if (contador < matriu.length-1){
-          contador++;
-        }
-      }
-    return matriu;
-  }
-
-
-
 
 
 
