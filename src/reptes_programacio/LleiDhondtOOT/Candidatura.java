@@ -3,7 +3,7 @@ package reptes_programacio.LleiDhondtOOT;
 public class Candidatura extends PartitPolitic{
     /** Variables */
     private int vots;
-    private int escons;
+    private int escons = 0;
     private boolean isExclosed = false;
 
     public Candidatura(int vots, String name){
@@ -34,6 +34,7 @@ public class Candidatura extends PartitPolitic{
     public boolean isExclosed() {
         return isExclosed;
     }
+
     public int getVots() {
         return vots;
     }

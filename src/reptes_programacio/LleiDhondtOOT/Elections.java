@@ -12,23 +12,22 @@ public class Elections {
         this.numberEscons = numberEscons;
     }
 
-    private float percentatgeExclos(){
+    public float percentatgeExclos() {
         int total = 0;
         for (Candidatura candidature : candidatures) {
             total += candidature.getVots();
         }
-        return total*percentatge;
+        return total * percentatge;
     }
 
-    private List<Candidatura> partitsQueSuperenElPercentatgeExclos(){
-        for (int i = 0; i < candidatures.size(); i++){
-            if (candidatures.get(i).getVots() < (float) percentatgeExclos()){
+    public List<Candidatura> partitsQueSuperenElPercentatgeExclos() {
+        for (int i = 0; i < candidatures.size(); i++) {
+            if (candidatures.get(i).getVots() < (float) percentatgeExclos()) {
                 candidatures.get(i).setExclosed(true);
             }
         }
         return candidatures;
     }
-
     public int[][] dividingVotesInEscons() {
         int var1 = 0;
         partitsQueSuperenElPercentatgeExclos();
@@ -46,7 +45,6 @@ public class Elections {
                         var1++;
                     }
                     System.out.print(escons[k][j] + "|");
-                    candidatures.get(k).setEscons(var1);
                 }
             } else {
                 System.out.print(candidatures.get(k).getName() + " X ");
@@ -56,5 +54,11 @@ public class Elections {
         return escons;
     }
 
+    public int getNumberEscons() {
+        return numberEscons;
+    }
 
+    public void setNumberEscons(int numberEscons) {
+        this.numberEscons = numberEscons;
+    }
 }
