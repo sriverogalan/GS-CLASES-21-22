@@ -1,5 +1,7 @@
 package reptesProgramacio.EnfonsarFlota;
 
+import java.util.Random;
+
 public class Tablero {
     public int cruceros = 1;
     public int destructors = 1;
@@ -9,7 +11,6 @@ public class Tablero {
 
     public Casilla[][] tableroAliado;
     public Casilla[][] tableroEnemigo;
-
 
     public Tablero() {
         tableroAliado = new Casilla[LONG_X][LONG_Y];
@@ -25,7 +26,7 @@ public class Tablero {
     public Casilla[][] getTableroEnemigo() {
         return tableroEnemigo;
     }
- 
+
     /* Setters */
 
     public void setCruceros(int cruceros) {
@@ -54,6 +55,18 @@ public class Tablero {
             }
         }
         return tableroEnemigo;
+    }
+
+    public Casilla[][] generarBarcos(){
+        Random rand1 = new Random();
+        
+
+        for (int i = 0; i < tableroAliado.length; i++){
+            for (int j = 0 ; j < tableroAliado.length ; j++){
+                tableroAliado[i][j] = new Casilla();
+            }
+        }
+        return tableroAliado;
     }
 
 

@@ -1,5 +1,7 @@
 package reptesProgramacio.EnfonsarFlota;
 
+import java.awt.*;
+
 public class Juego {
      public static void generarTableros(){
         Tablero tablero = new Tablero();
@@ -15,8 +17,10 @@ public class Juego {
          for (int i = 0 ; i < tablero.length; i++){
              System.out.print(color + i);
              for (int j = 0; j < tablero[i].length; j++){
-                 if (tablero[i][j].isTapada()){
+                 if (tablero[i][j].isTapada() && !tablero[i][j].isTeVaixell()){
                      System.out.print( " | " + " X "+ " | ");
+                 } else if (tablero[i][j].isTeVaixell()){
+                     System.out.print(Colores.colorVerde + " | " + " X "+ " | " + Colores.coloresReset);
                  }
              }
              System.out.println(Colores.coloresReset);
