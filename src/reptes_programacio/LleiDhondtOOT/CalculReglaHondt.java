@@ -25,21 +25,25 @@ public class CalculReglaHondt {
         int var2 = -1;
 
         int counter = elections.getNumberEscons();
-
-        for (int j = 0; j < elections.getNumberEscons(); j++) {
-            for (int i = 0; i < escons.length; i++) {
-                if (counter == 0) {
-                    break;
-                }
-                for (int k = 0; k < escons[i].length; k++) {
-                    if (i == var1 && k == var2) {
-                        continue;
+        for (int i = 0; i < elections.getNumberEscons(); i++) {
+            for (int j = 0; j < candidatures.size(); j++) {
+                if (!candidatures.get(j).isExclosed()) {
+                    for (int k = 0; k < escons.length; k++) {
+                        if (counter == 0) {
+                            break;
+                        }
+                        for (int l = 0; l < escons[i].length; l++) {
+                            if (i == var1 && k == var2) {
+                                continue;
+                            }
+                            if (escons[i][l] == candidatures.get(j).getVots()) {
+                                candidatures.get(j).setEscons(candidatures.get(j).getEscons() + 1);
+                                break;
+                            }
+                        }
+                        counter--;
                     }
-                    if (escons[i][j] < escons[i+1][j+1]){
-
-                    }
                 }
-                counter--;
             }
         }
 
