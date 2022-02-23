@@ -1,6 +1,6 @@
 package reptes_programacio.LleiDhondt;
 
-import reptes_programacio.LleiDhondtOOT.PartitPolitic;
+import reptes_programacio.LleiDhondtOOT.PoliticalParties;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,7 +8,7 @@ import java.util.Comparator;
 
 public class ReglaHondt {
     private int[][] escons;
-    private ArrayList<PartitPolitic> partitPolitics = new ArrayList<>();
+    private ArrayList<PoliticalParties> partitPolitics = new ArrayList<>();
 
     private ArrayList<String> politicalParty;
     private ArrayList<Integer> votes;

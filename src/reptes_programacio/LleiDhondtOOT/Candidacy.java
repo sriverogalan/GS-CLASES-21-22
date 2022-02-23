@@ -1,17 +1,17 @@
 package reptes_programacio.LleiDhondtOOT;
 
-public class Candidatura extends PartitPolitic{
+public class Candidacy extends PoliticalParties {
     /** Variables */
     private int vots;
     private int escons = 0;
     private boolean isExclosed = false;
 
-    public Candidatura(int vots, String name){
+    public Candidacy(int vots, String name){
         super(name);
         this.vots = vots;
         this.escons = escons;
     }
-    public Candidatura(int vots, String name, boolean isExclosed){
+    public Candidacy(int vots, String name, boolean isExclosed){
         super(name);
         this.vots = vots;
         this.escons = escons;
@@ -30,6 +30,7 @@ public class Candidatura extends PartitPolitic{
     public void setEscons(int escons) {
         this.escons = escons;
     }
+
     /** Getters */
     public boolean isExclosed() {
         return isExclosed;
@@ -42,4 +43,5 @@ public class Candidatura extends PartitPolitic{
     public int getEscons() {
         return escons;
     }
+
 }

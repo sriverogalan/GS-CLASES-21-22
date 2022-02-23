@@ -3,38 +3,39 @@ package reptes_programacio.LleiDhondtOOT;
 import java.util.List;
 
 public class Elections {
-    private List<Candidatura> candidatures;
+    private List<Candidacy> candidatures;
     private int numberEscons;
     private final float percentatge = 0.03F;
 
-    public Elections(List<Candidatura> candidatures, int numberEscons) {
+    public Elections(List<Candidacy> candidatures, int numberEscons) {
         this.candidatures = candidatures;
         this.numberEscons = numberEscons;
+        partiesExceedPercentageTotal();
     }
 
-    public float percentatgeExclos() {
+    private float percentatgeVotes() {
         int total = 0;
-        for (Candidatura candidature : candidatures) {
+        for (Candidacy candidature : candidatures) {
             total += candidature.getVots();
         }
         return total * percentatge;
     }
 
-    public List<Candidatura> partitsQueSuperenElPercentatgeExclos() {
+    private List<Candidacy> partiesExceedPercentageTotal() {
         for (int i = 0; i < candidatures.size(); i++) {
-            if (candidatures.get(i).getVots() < (float) percentatgeExclos()) {
+            if (candidatures.get(i).getVots() < (float) percentatgeVotes()) {
                 candidatures.get(i).setExclosed(true);
             }
         }
         return candidatures;
     }
+
     public int[][] dividingVotesInEscons() {
         int var1 = 0;
-        partitsQueSuperenElPercentatgeExclos();
         int[][] escons = new int[candidatures.size()][numberEscons];
 
-        for (int k = 0 ; k < candidatures.size(); k++){
-            if (!candidatures.get(k).isExclosed()){
+        for (int k = 0; k < candidatures.size(); k++) {
+            if (!candidatures.get(k).isExclosed()) {
                 System.out.print(candidatures.get(k).getName() + " ");
                 for (int j = 0; j < numberEscons; j++) {
                     if (j == 0) {
@@ -53,12 +54,9 @@ public class Elections {
         }
         return escons;
     }
-
+    /** Get num total escons */
     public int getNumberEscons() {
         return numberEscons;
     }
 
-    public void setNumberEscons(int numberEscons) {
-        this.numberEscons = numberEscons;
-    }
 }
