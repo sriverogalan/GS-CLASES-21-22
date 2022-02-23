@@ -8,7 +8,6 @@ import java.util.Comparator;
 
 public class ReglaHondt {
     private int[][] escons;
-    private ArrayList<PoliticalParties> partitPolitics = new ArrayList<>();
 
     private ArrayList<String> politicalParty;
     private ArrayList<Integer> votes;
@@ -20,6 +19,13 @@ public class ReglaHondt {
         this.politicalParty = politicalParty;
         this.votes = votes;
         this.numberEscons = numEscons;
+
+        discardPoliticalParties();
+        dividingVotesInEscons();
+        sortVotes();
+        correspondingEscons();
+        printEsconsAvailables();
+        printEsconsNotAvailables();
     }
 
     /* Methods */
@@ -103,13 +109,5 @@ public class ReglaHondt {
         for (String s : exclosed_politicalParty) {
             System.out.println(s);
         }
-    }
-    public void calculateReglaHondt() {
-        discardPoliticalParties();
-        dividingVotesInEscons();
-        sortVotes();
-        correspondingEscons();
-        printEsconsAvailables();
-        printEsconsNotAvailables();
     }
 }

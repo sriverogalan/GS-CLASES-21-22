@@ -19,8 +19,8 @@ public class Main {
         numeroVots.add(5000);
         numeroVots.add(2500);
 
-        ReglaHondt reglaHondt = new ReglaHondt(nomPartits, numeroVots, 7);
-        reglaHondt.calculateReglaHondt();
+        ReglaHondt reglaHondt = new ReglaHondt(nomPartits, numeroVots, 8);
+
 
     }
 }

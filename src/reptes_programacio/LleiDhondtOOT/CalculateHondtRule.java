@@ -77,7 +77,7 @@ public class CalculateHondtRule {
     private void printPartiesNotAvailables() {
         System.out.println("\n" + "Escons excluides ");
         for (int i = 0; i < candidatures.size(); i++) {
-            if (candidatures.get(i).isExclosed()){
+            if (candidatures.get(i).isExclosed()) {
                 System.out.println("El " + candidatures.get(i).getName() + " esta exclos. ");
             }
         }

@@ -33,7 +33,7 @@ public class Elections {
     public int[][] dividingVotesInEscons() {
         int var1 = 0;
         int[][] escons = new int[candidatures.size()][numberEscons];
-
+        System.out.println("Taula de relació de quocients");
         for (int k = 0; k < candidatures.size(); k++) {
             if (!candidatures.get(k).isExclosed()) {
                 System.out.print(candidatures.get(k).getName() + " ");
@@ -45,16 +45,17 @@ public class Elections {
                         escons[k][j] = candidatures.get(k).getVots() / var1;
                         var1++;
                     }
-                    System.out.print(escons[k][j] + "|");
+                    System.out.print(escons[k][j] + " | ");
                 }
-            } else {
-                System.out.print(candidatures.get(k).getName() + " X ");
+                System.out.println();
             }
-            System.out.println();
         }
         return escons;
     }
-    /** Get num total escons */
+
+    /**
+     * Get num total escons
+     */
     public int getNumberEscons() {
         return numberEscons;
     }

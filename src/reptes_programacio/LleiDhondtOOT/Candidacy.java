@@ -1,24 +1,29 @@
 package reptes_programacio.LleiDhondtOOT;
 
 public class Candidacy extends PoliticalParties {
-    /** Variables */
+    /**
+     * Variables
+     */
     private int vots;
     private int escons = 0;
     private boolean isExclosed = false;
 
-    public Candidacy(int vots, String name){
+    public Candidacy(int vots, String name) {
         super(name);
         this.vots = vots;
         this.escons = escons;
     }
-    public Candidacy(int vots, String name, boolean isExclosed){
+
+    public Candidacy(int vots, String name, boolean isExclosed) {
         super(name);
         this.vots = vots;
         this.escons = escons;
         this.isExclosed = isExclosed;
     }
 
-    /** Setters */
+    /**
+     * Setters
+     */
     public void setExclosed(boolean exclosed) {
         isExclosed = exclosed;
     }
@@ -31,7 +36,9 @@ public class Candidacy extends PoliticalParties {
         this.escons = escons;
     }
 
-    /** Getters */
+    /**
+     * Getters
+     */
     public boolean isExclosed() {
         return isExclosed;
     }

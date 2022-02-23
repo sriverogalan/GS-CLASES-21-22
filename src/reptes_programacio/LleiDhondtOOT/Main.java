@@ -21,7 +21,7 @@ public class Main {
 
         Elections elections = new Elections(candidatures, 8);
 
-       new CalculateHondtRule(candidatures, elections);
+        new CalculateHondtRule(candidatures, elections);
 
     }
 }
