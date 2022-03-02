@@ -1,12 +1,11 @@
 package reptes_programacio.LleiDhondtOOT;
 
-public class PoliticalParties {
+public class PoliticalParty {
     private String name;
 
-    public PoliticalParties(String name) {
+    public PoliticalParty(String name) {
         this.name = name;
     }
-
 
     public String getName() {
         return name;

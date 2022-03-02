@@ -1,7 +1,5 @@
 package reptes_programacio.LleiDhondt;
 
-import reptes_programacio.LleiDhondtOOT.PoliticalParties;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

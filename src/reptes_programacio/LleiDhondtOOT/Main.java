@@ -11,17 +11,15 @@ public class Main {
         Candidacy c3 = new Candidacy(40000, "P3");
         Candidacy c4 = new Candidacy(5000, "P4");
         Candidacy c5 = new Candidacy(2500, "P5");
-        List<Candidacy> candidatures = new ArrayList<>();
+        List<Candidacy> canditures = new ArrayList<>();
 
-        candidatures.add(c1);
-        candidatures.add(c2);
-        candidatures.add(c3);
-        candidatures.add(c4);
-        candidatures.add(c5);
+        canditures.add(c1);
+        canditures.add(c2);
+        canditures.add(c3);
+        canditures.add(c4);
+        canditures.add(c5);
 
-        Elections elections = new Elections(candidatures, 8);
-
-        new CalculateHondtRule(candidatures, elections);
+        new CalculateHondtRule(new Elections(canditures, 8));
 
     }
 }

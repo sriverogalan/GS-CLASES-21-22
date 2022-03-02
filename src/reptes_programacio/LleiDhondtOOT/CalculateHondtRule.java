@@ -12,9 +12,9 @@ public class CalculateHondtRule {
     private int[][] escons;
     private List<Integer> numFinal = new ArrayList<>();
 
-    public CalculateHondtRule(List<Candidacy> candidatures, Elections elections) {
+    public CalculateHondtRule(Elections elections) {
         this.elections = elections;
-        this.candidatures = candidatures;
+        this.candidatures = elections.getCandidatures();
         this.escons = elections.dividingVotesInEscons();
 
         setNumbersIntoNumFinal();
@@ -54,14 +54,12 @@ public class CalculateHondtRule {
                 for (int k = 0; k < numFinal.size(); k++) {
                     if (i == var1 && j == var2) {
                         continue;
-                    }
-                    if (escons[i][j] == numFinal.get(k)) {
-                        candidatures.get(i).setEscons(candidatures.get(i).getEscons() + 1);
+                    } else if (escons[i][j] == numFinal.get(k)) {
+                        candidatures.get(i).setSeats(candidatures.get(i).getSeats() + 1);
                         var1 = i;
                         var2 = j;
                         break;
                     }
-
                 }
             }
         }
@@ -70,7 +68,7 @@ public class CalculateHondtRule {
     private void printSeatsParties() {
         System.out.println("\n" + "Escons per partit: ");
         for (int i = 0; i < candidatures.size(); i++) {
-            System.out.println("El " + candidatures.get(i).getName() + " te " + candidatures.get(i).getEscons() + " escons");
+            System.out.println("El " + candidatures.get(i).getName() + " te " + candidatures.get(i).getSeats() + " escons");
         }
     }
 
