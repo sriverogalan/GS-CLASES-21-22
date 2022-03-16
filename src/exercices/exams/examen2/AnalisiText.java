@@ -1,11 +1,13 @@
 package exercices.exams.examen2;
 
-import java.io.IOException;
-import java.util.Locale;
-
 public class AnalisiText {
-    private static final String provaExecucio = "Una noia anomenada Anna va anar a cercar al b)osc un home, alla hi va trobar un cec que intentava trobar un figura de metall d'un cuc ben rar. Astorada li va dir que si no ho intentava amb un radar no crec que el trobis. Amb un aparell d'aquests que fan pipiripip segur que el trobraras encara que estigui ben tapat !";
+    private static final String provaExecucio = "Una noia anomenada Anna va anar a cercar al b)osc un home, alla hi va trobar un cec cuc ben rar. Astorada li va dir que si no ho intentava amb un radar no crec que el trobis. Amb un aparell daquests que fan pipiripip segur que el trobraras encara que estigui ben tapat !";
     private static final char[] delimitadors = new char[]{' ', '-', ',', '.', '!', '?'};
+    private static char[] letter = {'a', 'b', 'c', 'd', 'e', 'f',
+            'g', 'h', 'i', 'j', 'k', 'l',
+            'm', 'n', 'o', 'p', 'q', 'r',
+            's', 't', 'u', 'v', 'w', 'x',
+            'y', 'z'};
 
     public static char[] arrayCharsLowerCase() {
         String textLowerCase = provaExecucio.toLowerCase();
@@ -35,7 +37,7 @@ public class AnalisiText {
         return false;
     }
 
-    public static boolean exercici5(int index) {
+    public static boolean exercici5_esIniciDeParaula(int index) {
         if (index == 0) {
             return true;
         }
@@ -52,7 +54,7 @@ public class AnalisiText {
         return false;
     }
 
-    public static int exercici6(int index) {
+    public static int exercici6_longitudParaula(int index) {
         int counter = 0;
         boolean isDelimitator = false;
 
@@ -70,12 +72,89 @@ public class AnalisiText {
         return counter;
     }
 
-    public static String exercici7(int index) {
-        for (int i = 0; i < provaExecucio.length(); i++) {
-
+    public static String exercici7_retornaParaula(int index) {
+        String paraula = "";
+        boolean isDelimited = false;
+        for (int i = index; i < provaExecucio.length(); i++) {
+            for (int j = 0; j < delimitadors.length; j++) {
+                if (provaExecucio.charAt(i) == delimitadors[j]) {
+                    isDelimited = true;
+                    break;
+                }
+            }
+            if (isDelimited) {
+                break;
+            }
+            paraula += provaExecucio.charAt(i);
         }
-
-        return " ";
+        return paraula;
     }
+
+    public static boolean exercici8_esPalindroma(String paraula) {
+        boolean isPalindroma = true;
+        for (int i = 0; i < paraula.length(); i++) {
+            if (paraula.charAt(i) != paraula.charAt(paraula.length() - i - 1)) {
+                isPalindroma = false;
+                break;
+            }
+        }
+        return isPalindroma;
+    }
+
+    public static int exercici9_numeroPalindromes() {
+        char[] chars = arrayCharsLowerCase();
+        String var_temp = "";
+        int counter = 0;
+
+        for (int i = 0; i < chars.length; i++) {
+            if (exercici5_esIniciDeParaula(i)) {
+                if (exercici8_esPalindroma(exercici7_retornaParaula(i))) {
+                    counter++;
+                }
+            }
+        }
+        return counter;
+    }
+
+    public static String[] exercici10_paraulesPalindromes() {
+        char[] chars = arrayCharsLowerCase();
+        String var_temp = "";
+        int counter = 0;
+        int j = 0;
+        String[] array = new String[exercici9_numeroPalindromes()];
+
+        for (int i = 0; i < chars.length; i++) {
+            if (exercici5_esIniciDeParaula(i)) {
+                if (exercici8_esPalindroma(exercici7_retornaParaula(i))) {
+                    array[j++] = exercici7_retornaParaula(i);
+                }
+            }
+        }
+        return array;
+    }
+
+
+    public static void imprimirArray(String[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+        }
+    }
+
+    public static int[][] arrayBidimensionalConteAparicions() {
+        int[][] array = new int[letter.length][letter.length];
+        char[] chars = arrayCharsLowerCase();
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                for (int k = 1; k < chars.length; k++) {
+                    if (chars[k - 1] == letter[i] && chars[k] == letter[j]) {
+                        array[i][j]++;
+                    }
+                }
+            }
+        }
+        return array;
+    }
+
 
 }

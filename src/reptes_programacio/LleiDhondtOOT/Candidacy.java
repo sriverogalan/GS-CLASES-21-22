@@ -28,6 +28,7 @@ public class Candidacy extends PoliticalParty {
         this.seats = seats;
     }
 
+
     /**
      * Getters
      */
