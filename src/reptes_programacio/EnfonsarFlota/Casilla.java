@@ -38,4 +38,3 @@ public class Casilla {
         this.tieneBarcoAlrededor = tieneBarcoAlrededor;
     }
 }
-
