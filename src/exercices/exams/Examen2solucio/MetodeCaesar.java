@@ -82,8 +82,8 @@ public class MetodeCaesar {
 
 
     public static void imprimirArray(char[] arrayFinal) {
-        for (int k = 0; k < arrayFinal.length; k++) {
-            System.out.println(arrayFinal[k]);
+        for (char c : arrayFinal) {
+            System.out.println(c);
         }
     }
 
