@@ -1,64 +1,54 @@
 package reptes_programacio.Conecta4;
 
 public class Tablero {
-
-    // Classe Tablero
+    private final Casilla[][] tablero;
     private int filas = 6;
     private int columnas = 7;
-    private boolean[][] tablero;
-    private int turno = 0;
-
-    /* CONSTRUCTOR */
+    private int turnoJugador1 = 0;
+    private int turnoJugador2 = 0;
+    private int MAX_TURNO = 21;
 
     public Tablero() {
-        this.filas = filas;
-        this.columnas = columnas;
-        this.tablero = new boolean[filas][columnas];
-        this.turno = 0;
+        tablero = new Casilla[filas][columnas];
     }
 
-    /* GETTERS & SETERS */
-
-    public int getFilas() {
-        return filas;
+    public void generarTablero() {
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[i].length; j++) {
+                tablero[i][j] = new Casilla();
+            }
+        }
     }
 
-    public int getColumnas() {
-        return columnas;
-    }
-
-    public int getTurno() {
-        return turno;
-    }
-
-    public void setFilas(int filas) {
-        this.filas = filas;
-    }
-
-    public void setColumnas(int columnas) {
-        this.columnas = columnas;
-    }
-
-    public void setTablero(boolean[][] tablero) {
-        this.tablero = tablero;
-    }
-
-    public void setTurno(int turno) {
-        this.turno = turno;
-    }
-
-    public boolean[][] getTablero() {
-        return tablero;
-    }
-
-    public boolean getCasilla(int fila, int columna) {
-        return tablero[fila][columna];
-    }
-
-    public void setCasilla(int fila, int columna, boolean valor) {
-        tablero[fila][columna] = valor;
+    public void imprimirTablero() {
+        int contadorHorizontal = 1;
+        for (int i = 0; i < tablero.length; i++) {
+            if (i == 0) {
+                imprimirNumerosVerticalmenteTablero(i);
+            }
+            System.out.print(" ( " + contadorHorizontal++ + " ) ");
+            for (int j = 0; j < tablero[i].length; j++) {
+                if (!tablero[i][j].getIsOcupada()) {
+                    System.out.print(" ( - ) ");
+                }
+            }
+            System.out.println();
+        }
     }
 
 
+    public void imprimirNumerosVerticalmenteTablero(int i) {
+        int contadorVertical = 1;
+        for (int e = 0; e < tablero[i].length; e++) {
+            if (e == 0) {
+                System.out.print("       ");
+            }
+            System.out.print(" ( " + contadorVertical + " ) ");
+            contadorVertical++;
+            if (e == tablero[i].length - 1) {
+                System.out.println();
+            }
+        }
+    }
 
 }
