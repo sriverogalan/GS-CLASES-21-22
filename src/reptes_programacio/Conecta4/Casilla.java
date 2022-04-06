@@ -2,26 +2,36 @@ package reptes_programacio.Conecta4;
 
 public class Casilla {
     private boolean isOcupada;
-    private boolean isVacia;
+    private boolean tieneFichaJugador1;
+    private boolean tieneFichaJugador2;
 
     public Casilla(){
         isOcupada = false;
-        isVacia = true;
+        tieneFichaJugador1 = false;
+        tieneFichaJugador2 = false;
     }
 
-    public boolean getIsOcupada(){
+    public boolean isOcupada() {
         return isOcupada;
     }
 
-    public boolean getIsVacia(){
-        return isVacia;
+    public void setOcupada(boolean ocupada) {
+        isOcupada = ocupada;
     }
 
-    public void setIsOcupada(boolean isOcupada){
-        this.isOcupada = isOcupada;
+    public boolean isTieneFichaJugador1() {
+        return tieneFichaJugador1;
     }
 
-    public void setIsVacia(boolean isVacia){
-        this.isVacia = isVacia;
+    public void setTieneFichaJugador1(boolean tieneFichaJugador1) {
+        this.tieneFichaJugador1 = tieneFichaJugador1;
+    }
+
+    public boolean isTieneFichaJugador2() {
+        return tieneFichaJugador2;
+    }
+
+    public void setTieneFichaJugador2(boolean tieneFichaJugador2) {
+        this.tieneFichaJugador2 = tieneFichaJugador2;
     }
 }
