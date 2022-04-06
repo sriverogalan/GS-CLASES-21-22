@@ -37,6 +37,7 @@ public class Conecta4 {
         tablero.imprimirTablero();
         Texto.enQueColumnaQuieresMeterUnaFicha();
     }
+    // LIMITAR SCANNER 0-6
 
     private static void juegaJugador1(){
         try {

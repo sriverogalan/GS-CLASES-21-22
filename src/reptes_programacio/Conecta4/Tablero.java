@@ -77,11 +77,8 @@ public class Tablero {
     public void comprobarSiHaGanado(Jugador jugador) {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[i].length; j++) {
-                /*Comprobacion horizontal 4 en raya*/
 
             }
         }
-
     }
-
 }
