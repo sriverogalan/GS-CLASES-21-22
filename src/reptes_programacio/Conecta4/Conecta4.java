@@ -40,6 +40,7 @@ public class Conecta4 {
     // LIMITAR SCANNER 0-6
 
     private static void juegaJugador1(){
+        tablero.comprobarSiHaGanado(jugador2);
         try {
             imprimirTableroJugador();
             Texto.turnoJugador(jugador1, Colores.ROJO);
@@ -52,6 +53,7 @@ public class Conecta4 {
     }
 
     private static void juegaJugador2(){
+        tablero.comprobarSiHaGanado(jugador1);
         try {
             imprimirTableroJugador();
             Texto.turnoJugador(jugador2, Colores.AZUL);

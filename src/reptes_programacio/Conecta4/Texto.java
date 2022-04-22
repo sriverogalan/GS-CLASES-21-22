@@ -45,6 +45,11 @@ public class Texto {
 
 
     public static void turnoJugador(Jugador jugador, String color) {
-        System.out.println(Colores.LILA + "\n\n Es tu turno Jugador : " + color + jugador.getNombre() + Colores.RESET);
+        System.out.println(Colores.LILA + "Es tu turno Jugador : " + color + jugador.getNombre() + Colores.RESET);
     }
+    public static void ganaJugador(Jugador jugador) {
+        System.out.println(Colores.LILA + "Has ganado : " + Colores.AZUL + jugador.getNombre() + Colores.RESET);
+    }
+
+
 }

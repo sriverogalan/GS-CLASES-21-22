@@ -77,8 +77,82 @@ public class Tablero {
     public void comprobarSiHaGanado(Jugador jugador) {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[i].length; j++) {
-
+                if (tablero[i][j].isTieneFichaJugador1() || tablero[i][j].isTieneFichaJugador2()) {
+                    if (comprobarSiVaGanandoHorizontal(i, j, jugador) || comprobarSiVaGanandoVertical(i, j, jugador) || comprobarSiVaGanandoDiagonal(i, j, jugador)) {
+                        imprimirTablero();
+                        Texto.ganaJugador(jugador);
+                        System.exit(0);
+                    }
+                }
             }
         }
+    }
+
+    public boolean comprobarSiVaGanandoHorizontal(int i, int j, Jugador jugador) {
+        int contador = 0;
+        for (int e = 0; e < tablero[i].length; e++) {
+            if (tablero[i][e].isTieneFichaJugador1() || tablero[i][e].isTieneFichaJugador2()) {
+                contador++;
+            } else {
+                contador = 0;
+            }
+            if (contador == 4) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean comprobarSiVaGanandoVertical(int i, int j, Jugador jugador) {
+        int contador = 0;
+
+        for (int e = 0; e < tablero.length; e++) {
+            if (tablero[e][j].isTieneFichaJugador1() || tablero[e][j].isTieneFichaJugador2()) {
+                contador++;
+            } else {
+                contador = 0;
+            }
+            if (contador == 4) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean comprobarSiVaGanandoDiagonal(int i, int j, Jugador jugador) {
+        int contador = 0;
+        int contador2 = 0;
+        for (int e = 0; e < tablero.length; e++) {
+            if (tablero[e][e].isTieneFichaJugador1() || tablero[e][e].isTieneFichaJugador2()) {
+                contador++;
+            } else {
+                contador = 0;
+            }
+            if (contador == 4) {
+                return true;
+            }
+        }
+        for (int e = 0; e < tablero.length; e++) {
+            if (tablero[e][tablero.length - 1 - e].isTieneFichaJugador1() || tablero[e][tablero.length - 1 - e].isTieneFichaJugador2()) {
+                contador2++;
+            } else {
+                contador2 = 0;
+            }
+            if (contador2 == 4) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean comprobarSiHayEmpate() {
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[i].length; j++) {
+                if (!tablero[i][j].isOcupada()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

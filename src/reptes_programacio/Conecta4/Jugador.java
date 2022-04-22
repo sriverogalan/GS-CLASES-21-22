@@ -22,13 +22,6 @@ public class Jugador {
         this.numeroPartidasPerdidas = numeroPartidasPerdidas;
     }
 
-    public int getNumeroPartidasEmpatadas() {
-        return numeroPartidasEmpatadas;
-    }
-
-    public void setNumeroPartidasEmpatadas(int numeroPartidasEmpatadas) {
-        this.numeroPartidasEmpatadas = numeroPartidasEmpatadas;
-    }
 
     public boolean isJugador1() {
         return isJugador1;
@@ -46,29 +39,6 @@ public class Jugador {
         return nombre;
     }
 
-    public int getNumeroPartidasGanadas() {
-        return numeroPartidasGanadas;
-    }
-
-    public void setNumeroPartidasGanadas(int numeroPartidasGanadas) {
-        this.numeroPartidasGanadas = numeroPartidasGanadas;
-    }
-
-    public void incrementaPartidasGanadas() {
-        this.numeroPartidasGanadas++;
-    }
-
-    public void decrementaPartidasGanadas() {
-        this.numeroPartidasGanadas--;
-    }
-
-    public int getTurno() {
-        return turno;
-    }
-
-    public void setTurno(int turno) {
-        this.turno = turno;
-    }
 
     public String toString() {
         return this.nombre + " " + this.numeroPartidasGanadas;
