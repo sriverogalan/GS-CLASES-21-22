@@ -10,7 +10,6 @@ public class Conecta4 {
 
     public static void jugar(){
         try {
-            tablero.generarTablero();
             Texto.principal();
             escogeNombreJugador(jugador1, Texto.escogeJugador1());
             jugador1.setJugador1(true);
@@ -40,12 +39,12 @@ public class Conecta4 {
     // LIMITAR SCANNER 0-6
 
     private static void juegaJugador1(){
-        tablero.comprobarSiHaGanado(jugador2);
         try {
             imprimirTableroJugador();
             Texto.turnoJugador(jugador1, Colores.ROJO);
             tablero.destaparCasillaJugador(scanner.nextInt(),jugador1);
             juegaJugador2();
+            tablero.comprobarSiHasGanado(jugador1);
         } catch (Exception exception) {
             Texto.errorAlPonerLasColumnas();
             juegaJugador1();
@@ -53,17 +52,17 @@ public class Conecta4 {
     }
 
     private static void juegaJugador2(){
-        tablero.comprobarSiHaGanado(jugador1);
         try {
             imprimirTableroJugador();
             Texto.turnoJugador(jugador2, Colores.AZUL);
             tablero.destaparCasillaJugador(scanner.nextInt(),jugador2);
             juegaJugador1();
+            if (tablero.comprobarSiHasGanado(jugador2)) {
+                Texto.hasGanado(jugador2);
+            }
         } catch (Exception exception) {
             Texto.errorAlPonerLasColumnas();
             juegaJugador2();
         }
     }
-
-
 }

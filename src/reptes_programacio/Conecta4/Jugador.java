@@ -3,8 +3,6 @@ package reptes_programacio.Conecta4;
 public class Jugador {
     private String nombre;
     private int numeroPartidasGanadas;
-    private int numeroPartidasPerdidas;
-    private int numeroPartidasEmpatadas;
     private boolean isJugador1;
     private int turno = 21;
 
@@ -13,15 +11,6 @@ public class Jugador {
         isJugador1 = false;
         this.numeroPartidasGanadas = numeroPartidasGanadas;
     }
-
-    public int getNumeroPartidasPerdidas() {
-        return numeroPartidasPerdidas;
-    }
-
-    public void setNumeroPartidasPerdidas(int numeroPartidasPerdidas) {
-        this.numeroPartidasPerdidas = numeroPartidasPerdidas;
-    }
-
 
     public boolean isJugador1() {
         return isJugador1;
