@@ -8,7 +8,7 @@ public class Conecta4 {
     private static Jugador jugador2 = new Jugador("");
     private static Tablero tablero = new Tablero();
 
-    public static void jugar(){
+    public static void jugar() {
         try {
             Texto.principal();
             escogeNombreJugador(jugador1, Texto.escogeJugador1());
@@ -21,7 +21,7 @@ public class Conecta4 {
         }
     }
 
-    public static void escogeNombreJugador(Jugador jugador, String texto){
+    public static void escogeNombreJugador(Jugador jugador, String texto) {
         try {
             System.out.println(texto);
             jugador.setNombre(scanner.nextLine());
@@ -31,38 +31,40 @@ public class Conecta4 {
         }
     }
 
-    private static void imprimirTableroJugador(){
+    private static void imprimirTableroJugador() {
         Texto.separacion();
         tablero.imprimirTablero();
         Texto.enQueColumnaQuieresMeterUnaFicha();
     }
-    // LIMITAR SCANNER 0-6
-
-    private static void juegaJugador1(){
+    public static void juegaJugador(Jugador jugador) {
         try {
             imprimirTableroJugador();
-            Texto.turnoJugador(jugador1, Colores.ROJO);
-            tablero.destaparCasillaJugador(scanner.nextInt(),jugador1);
-            juegaJugador2();
-            tablero.comprobarSiHasGanado(jugador1);
+            Texto.turnoJugador(jugador);
+            destapaCasilla(scanner.nextInt(), jugador);
+            compruebaSiHasGanado(jugador);
         } catch (Exception exception) {
             Texto.errorAlPonerLasColumnas();
-            juegaJugador1();
+            juegaJugador(jugador);
         }
     }
+    private static void juegaJugador1() {
+        juegaJugador(jugador1);
+        juegaJugador2();
+    }
+    private static void juegaJugador2() {
+        juegaJugador(jugador2);
+        juegaJugador1();
+    }
 
-    private static void juegaJugador2(){
-        try {
-            imprimirTableroJugador();
-            Texto.turnoJugador(jugador2, Colores.AZUL);
-            tablero.destaparCasillaJugador(scanner.nextInt(),jugador2);
-            juegaJugador1();
-            if (tablero.comprobarSiHasGanado(jugador2)) {
-                Texto.hasGanado(jugador2);
-            }
-        } catch (Exception exception) {
-            Texto.errorAlPonerLasColumnas();
-            juegaJugador2();
+    public static void destapaCasilla(int columna, Jugador jugador) {
+        tablero.destaparCasillaJugador(columna, jugador);
+    }
+    public static void compruebaSiHasGanado(Jugador jugador) {
+        if (tablero.comprobarSiHasGanado(jugador)) {
+            Texto.separacion();
+            tablero.imprimirTablero();
+            Texto.hasGanado(jugador);
+            System.exit(0);
         }
     }
 }

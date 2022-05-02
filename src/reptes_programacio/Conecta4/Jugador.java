@@ -2,14 +2,12 @@ package reptes_programacio.Conecta4;
 
 public class Jugador {
     private String nombre;
-    private int numeroPartidasGanadas;
     private boolean isJugador1;
-    private int turno = 21;
+    private String color;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
         isJugador1 = false;
-        this.numeroPartidasGanadas = numeroPartidasGanadas;
     }
 
     public boolean isJugador1() {
@@ -28,9 +26,15 @@ public class Jugador {
         return nombre;
     }
 
-
-    public String toString() {
-        return this.nombre + " " + this.numeroPartidasGanadas;
+    public String getColor() {
+        if (isJugador1) {
+            return "\u001B[31m";
+        } else {
+            return "\u001B[36m";
+        }
     }
 
+    public void setColor(String color) {
+        this.color = color;
+    }
 }

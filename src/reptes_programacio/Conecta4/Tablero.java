@@ -83,10 +83,82 @@ public class Tablero {
                     if (comprobar4enRayaDiagonal(i, j, jugador)) {
                         return true;
                     }
+                } else if (tablero[i][j].isTieneFichaJugador2()) {
+                    if (comprobar4enRayaHorizontal(i, j, jugador)) {
+                        return true;
+                    }
+                    if (comprobar4enRayaVertical(i, j, jugador)) {
+                        return true;
+                    }
+                    if (comprobar4enRayaDiagonal(i, j, jugador)) {
+                        return true;
+                    }
                 }
             }
         }
         return false;
     }
 
+    public boolean comprobar4enRayaHorizontal(int fila, int columna, Jugador jugador) {
+        int contador = 0;
+        for (int i = columna; i < tablero[fila].length; i++) {
+            if (tablero[fila][i].isTieneFichaJugador1()) {
+                contador++;
+            } else {
+                contador = 0;
+            }
+            if (contador == 4) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean comprobar4enRayaVertical(int fila, int columna, Jugador jugador) {
+        int contador = 0;
+        for (int i = fila; i < tablero.length; i++) {
+            if (tablero[i][columna].isTieneFichaJugador1()) {
+                contador++;
+            } else {
+                contador = 0;
+            }
+            if (contador == 4) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean comprobar4enRayaDiagonal(int fila, int columna, Jugador jugador) {
+        int contador = 0;
+        int filaAux = fila;
+        int columnaAux = columna;
+        while (filaAux < tablero.length && columnaAux < tablero[fila].length) {
+            if (tablero[filaAux][columnaAux].isTieneFichaJugador1()) {
+                contador++;
+            } else {
+                contador = 0;
+            }
+            if (contador == 4) {
+                return true;
+            }
+            filaAux++;
+            columnaAux++;
+        }
+        filaAux = fila;
+        columnaAux = columna;
+        while (filaAux < tablero.length && columnaAux >= 0) {
+            if (tablero[filaAux][columnaAux].isTieneFichaJugador1()) {
+                contador++;
+            } else {
+                contador = 0;
+            }
+            if (contador == 4) {
+                return true;
+            }
+            filaAux++;
+            columnaAux--;
+        }
+        return false;
+    }
 }

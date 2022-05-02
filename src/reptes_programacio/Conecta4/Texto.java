@@ -12,11 +12,11 @@ public class Texto {
         );
     }
     public static String escogeJugador1() {
-        return Colores.AZUL + "Jugador 1, escoge tu nombre" + Colores.RESET;
+        return Colores.ROJO + "Jugador 1, escoge tu nombre" + Colores.RESET;
     }
 
     public static String escogeJugador2() {
-        return Colores.LILA + "Jugador 2, escoge tu nombre" + Colores.RESET;
+        return Colores.AZUL + "Jugador 2, escoge tu nombre" + Colores.RESET;
     }
 
     public static void enQueColumnaQuieresMeterUnaFicha() {
@@ -36,19 +36,17 @@ public class Texto {
     }
 
     public static void separacion(){
-        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("\n-----------------------------------------------------------------------------------------\n");
     }
 
     public static void escogeOtraColumna(){
         System.out.println(Colores.ROJO + "ERROR : Escoge otra columna esta esta llena" + Colores.RESET);
     }
-
-
-    public static void turnoJugador(Jugador jugador, String color) {
-        System.out.println(Colores.LILA + "Es tu turno Jugador : " + color + jugador.getNombre() + Colores.RESET);
+    public static void turnoJugador(Jugador jugador) {
+        System.out.println(jugador.getColor() + "Es tu turno Jugador : " + jugador.getNombre() + Colores.RESET);
     }
     public static void hasGanado(Jugador jugador) {
-        System.out.println(Colores.LILA + "Has ganado : " + Colores.AZUL + jugador.getNombre() + Colores.RESET);
+        System.out.println(jugador.getColor() + "Has ganado : " + jugador.getNombre() + Colores.RESET);
     }
 
 
