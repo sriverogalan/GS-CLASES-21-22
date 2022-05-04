@@ -76,21 +76,17 @@ public class Tablero {
                 if (tablero[i][j].isTieneFichaJugador1()) {
                     if (comprobar4enRayaHorizontal(i, j, jugador)) {
                         return true;
-                    }
-                    if (comprobar4enRayaVertical(i, j, jugador)) {
+                    } else if (comprobar4enRayaVertical(i, j, jugador)) {
                         return true;
-                    }
-                    if (comprobar4enRayaDiagonal(i, j, jugador)) {
+                    } else if (comprobar4enRayasDiagonales(i, j, jugador)) {
                         return true;
                     }
                 } else if (tablero[i][j].isTieneFichaJugador2()) {
                     if (comprobar4enRayaHorizontal(i, j, jugador)) {
                         return true;
-                    }
-                    if (comprobar4enRayaVertical(i, j, jugador)) {
+                    } else if (comprobar4enRayaVertical(i, j, jugador)) {
                         return true;
-                    }
-                    if (comprobar4enRayaDiagonal(i, j, jugador)) {
+                    } else if (comprobar4enRayasDiagonales(i, j, jugador)) {
                         return true;
                     }
                 }
@@ -101,8 +97,10 @@ public class Tablero {
 
     public boolean comprobar4enRayaHorizontal(int fila, int columna, Jugador jugador) {
         int contador = 0;
-        for (int i = columna; i < tablero[fila].length; i++) {
-            if (tablero[fila][i].isTieneFichaJugador1()) {
+        for (int i = 0; i < tablero.length; i++) {
+            if (tablero[fila][i].isTieneFichaJugador1() && jugador.isJugador1()) {
+                contador++;
+            } else if (tablero[fila][i].isTieneFichaJugador2() && !jugador.isJugador1()) {
                 contador++;
             } else {
                 contador = 0;
@@ -116,8 +114,10 @@ public class Tablero {
 
     public boolean comprobar4enRayaVertical(int fila, int columna, Jugador jugador) {
         int contador = 0;
-        for (int i = fila; i < tablero.length; i++) {
-            if (tablero[i][columna].isTieneFichaJugador1()) {
+        for (int i = 0; i < tablero.length; i++) {
+            if (tablero[i][columna].isTieneFichaJugador1() && jugador.isJugador1()) {
+                contador++;
+            } else if (tablero[i][columna].isTieneFichaJugador2() && !jugador.isJugador1()) {
                 contador++;
             } else {
                 contador = 0;
@@ -129,36 +129,8 @@ public class Tablero {
         return false;
     }
 
-    public boolean comprobar4enRayaDiagonal(int fila, int columna, Jugador jugador) {
-        int contador = 0;
-        int filaAux = fila;
-        int columnaAux = columna;
-        while (filaAux < tablero.length && columnaAux < tablero[fila].length) {
-            if (tablero[filaAux][columnaAux].isTieneFichaJugador1()) {
-                contador++;
-            } else {
-                contador = 0;
-            }
-            if (contador == 4) {
-                return true;
-            }
-            filaAux++;
-            columnaAux++;
-        }
-        filaAux = fila;
-        columnaAux = columna;
-        while (filaAux < tablero.length && columnaAux >= 0) {
-            if (tablero[filaAux][columnaAux].isTieneFichaJugador1()) {
-                contador++;
-            } else {
-                contador = 0;
-            }
-            if (contador == 4) {
-                return true;
-            }
-            filaAux++;
-            columnaAux--;
-        }
+    // Comprobar 4 en raya diagonales de izquierda a derecha
+    public boolean comprobar4enRayasDiagonales(int fila, int columna, Jugador jugador) {
         return false;
     }
 }

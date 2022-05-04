@@ -1,7 +1,5 @@
 package exercices.exams.Examen2solucio;
 
-import groovyjarjarpicocli.CommandLine;
-
 /**
  * Created by Sergi Rivero
  * at 16/03/2022 16:48

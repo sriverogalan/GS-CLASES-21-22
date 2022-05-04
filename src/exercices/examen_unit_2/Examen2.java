@@ -1,7 +1,5 @@
 package exercices.examen_unit_2;
 
-import java.util.Arrays;
-
 /**
  * Created by Sergi Rivero
  * at 28/02/2022 16:21
