@@ -1,19 +1,21 @@
 package reptes_programacio.Conecta4;
 
+import reptes_programacio.Conecta4.Box.Box;
+
 import java.util.Scanner;
 
 public class Tablero {
     private Scanner scanner = new Scanner(System.in);
-    private final Casilla[][] tablero;
+    private final Box[][] tablero;
     private final int filas = 6; // 6 filas
     private final int columnas = 7; // 7 columnas
 
     public Tablero() {
-        tablero = new Casilla[filas][columnas];
+        tablero = new Box[filas][columnas];
         /*GENERAMOS EL TABLERO*/
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[i].length; j++) {
-                tablero[i][j] = new Casilla();
+                tablero[i][j] = new Box();
             }
         }
     }
@@ -26,7 +28,7 @@ public class Tablero {
             }
             System.out.print(" ( " + contadorHorizontal++ + " ) ");
             for (int j = 0; j < tablero[i].length; j++) {
-                if (!tablero[i][j].isOcupada()) {
+                if (!tablero[i][j].isBuida()) {
                     System.out.print(" ( - ) ");
                 } else if (tablero[i][j].isTieneFichaJugador1()) {
                     System.out.print(Colores.ROJO + " ( X ) " + Colores.RESET);
@@ -52,41 +54,41 @@ public class Tablero {
         }
     }
 
-    public void destaparCasillaJugador(int columna, Jugador jugador) {
+    public void destaparCasillaJugador(int columna, Player player) {
         int fila = filas - 1;
-        while (tablero[fila][columna].isOcupada()) {
-            if (tablero[0][columna].isOcupada() || tablero[0][columna].isTieneFichaJugador1() || tablero[0][columna].isTieneFichaJugador2()) {
+        while (tablero[fila][columna].isBuida()) {
+            if (tablero[0][columna].isBuida() || tablero[0][columna].isTieneFichaJugador1() || tablero[0][columna].isTieneFichaJugador2()) {
                 Texto.escogeOtraColumna();
-                destaparCasillaJugador(scanner.nextInt(), jugador);
+                destaparCasillaJugador(scanner.nextInt(), player);
                 break;
             }
             fila--;
         }
-        tablero[fila][columna].setOcupada(true); //destapamos la casilla
-        if (jugador.isJugador1()) {
+        tablero[fila][columna].setBuida(true); //destapamos la casilla
+        if (player.isJugador1()) {
             tablero[fila][columna].setTieneFichaJugador1(true); //ponemos la ficha del jugador
         } else {
             tablero[fila][columna].setTieneFichaJugador2(true); //ponemos la ficha del jugador
         }
     }
 
-    public boolean comprobarSiHasGanado(Jugador jugador) {
+    public boolean comprobarSiHasGanado(Player player) {
         for (int i = 0; i < tablero.length; i++) {
             for (int j = 0; j < tablero[i].length; j++) {
                 if (tablero[i][j].isTieneFichaJugador1()) {
-                    if (comprobar4enRayaHorizontal(i, j, jugador)) {
+                    if (comprobar4enRayaHorizontal(i, j, player)) {
                         return true;
-                    } else if (comprobar4enRayaVertical(i, j, jugador)) {
+                    } else if (comprobar4enRayaVertical(i, j, player)) {
                         return true;
-                    } else if (comprobar4enRayasDiagonales(i, j, jugador)) {
+                    } else if (comprobar4enRayasDiagonales(i, j, player)) {
                         return true;
                     }
                 } else if (tablero[i][j].isTieneFichaJugador2()) {
-                    if (comprobar4enRayaHorizontal(i, j, jugador)) {
+                    if (comprobar4enRayaHorizontal(i, j, player)) {
                         return true;
-                    } else if (comprobar4enRayaVertical(i, j, jugador)) {
+                    } else if (comprobar4enRayaVertical(i, j, player)) {
                         return true;
-                    } else if (comprobar4enRayasDiagonales(i, j, jugador)) {
+                    } else if (comprobar4enRayasDiagonales(i, j, player)) {
                         return true;
                     }
                 }
@@ -95,12 +97,12 @@ public class Tablero {
         return false;
     }
 
-    public boolean comprobar4enRayaHorizontal(int fila, int columna, Jugador jugador) {
+    public boolean comprobar4enRayaHorizontal(int fila, int columna, Player player) {
         int contador = 0;
         for (int i = 0; i < tablero.length; i++) {
-            if (tablero[fila][i].isTieneFichaJugador1() && jugador.isJugador1()) {
+            if (tablero[fila][i].isTieneFichaJugador1() && player.isJugador1()) {
                 contador++;
-            } else if (tablero[fila][i].isTieneFichaJugador2() && !jugador.isJugador1()) {
+            } else if (tablero[fila][i].isTieneFichaJugador2() && !player.isJugador1()) {
                 contador++;
             } else {
                 contador = 0;
@@ -112,12 +114,12 @@ public class Tablero {
         return false;
     }
 
-    public boolean comprobar4enRayaVertical(int fila, int columna, Jugador jugador) {
+    public boolean comprobar4enRayaVertical(int fila, int columna, Player player) {
         int contador = 0;
         for (int i = 0; i < tablero.length; i++) {
-            if (tablero[i][columna].isTieneFichaJugador1() && jugador.isJugador1()) {
+            if (tablero[i][columna].isTieneFichaJugador1() && player.isJugador1()) {
                 contador++;
-            } else if (tablero[i][columna].isTieneFichaJugador2() && !jugador.isJugador1()) {
+            } else if (tablero[i][columna].isTieneFichaJugador2() && !player.isJugador1()) {
                 contador++;
             } else {
                 contador = 0;
@@ -129,7 +131,7 @@ public class Tablero {
         return false;
     }
 
-    public boolean comprobar4enRayasDiagonales(int fila, int columna, Jugador jugador) {
+    public boolean comprobar4enRayasDiagonales(int fila, int columna, Player player) {
         int contador = 0;
 
         return false;

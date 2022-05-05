@@ -11,12 +11,8 @@ public class Texto {
                 " ░╚════╝░░╚════╝░╚═╝░░╚══╝╚══════╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝        ░░░░░╚═╝ \n\n\n" + Colores.RESET
         );
     }
-    public static String escogeJugador1() {
-        return Colores.ROJO + "Jugador 1, escoge tu nombre" + Colores.RESET;
-    }
-
-    public static String escogeJugador2() {
-        return Colores.AZUL + "Jugador 2, escoge tu nombre" + Colores.RESET;
+    public static String escogeJugador1(Player player) {
+        return Colores.ROJO + "Jugador"+ player.getId() +" , escoge tu nombre" + Colores.RESET;
     }
 
     public static void enQueColumnaQuieresMeterUnaFicha() {
@@ -42,11 +38,11 @@ public class Texto {
     public static void escogeOtraColumna(){
         System.out.println(Colores.ROJO + "ERROR : Escoge otra columna esta esta llena" + Colores.RESET);
     }
-    public static void turnoJugador(Jugador jugador) {
-        System.out.println(jugador.getColor() + "Es tu turno Jugador : " + jugador.getNombre() + Colores.RESET);
+    public static void turnoJugador(Player player) {
+        System.out.println(player.getColor() + "Es tu turno Jugador : " + player.getName() + Colores.RESET);
     }
-    public static void hasGanado(Jugador jugador) {
-        System.out.println(jugador.getColor() + "Has ganado : " + jugador.getNombre() + Colores.RESET);
+    public static void hasGanado(Player player) {
+        System.out.println(player.getColor() + "Has ganado : " + player.getName() + Colores.RESET);
     }
 
 
