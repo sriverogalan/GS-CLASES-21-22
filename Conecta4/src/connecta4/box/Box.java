@@ -1,7 +1,8 @@
-package reptes_programacio.Conecta4.Box;
+package connecta4.box;
 
 public class Box {
     private boolean isBuida;
+    private String name
     private String color;
 
     public Box(){

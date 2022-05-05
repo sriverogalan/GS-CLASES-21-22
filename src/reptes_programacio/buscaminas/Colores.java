@@ -1,4 +1,4 @@
-package reptes_programacio.Buscaminas;
+package reptes_programacio.buscaminas;
 
 public class Colores {
     // reset

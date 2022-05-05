@@ -1,16 +1,19 @@
-package reptes_programacio.Conecta4;
+package connecta4.board;
 
-import reptes_programacio.Conecta4.Box.Box;
+import connecta4.box.Box;
+import connecta4.player.Player;
+import connecta4.utils.Colores;
+import connecta4.utils.Texto;
 
 import java.util.Scanner;
 
-public class Tablero {
+public class Board {
     private Scanner scanner = new Scanner(System.in);
     private final Box[][] tablero;
     private final int filas = 6; // 6 filas
     private final int columnas = 7; // 7 columnas
 
-    public Tablero() {
+    public Board() {
         tablero = new Box[filas][columnas];
         /*GENERAMOS EL TABLERO*/
         for (int i = 0; i < tablero.length; i++) {

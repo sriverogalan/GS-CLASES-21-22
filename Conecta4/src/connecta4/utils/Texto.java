@@ -1,4 +1,7 @@
-package reptes_programacio.Conecta4;
+package connecta4.utils;
+
+import connecta4.player.Player;
+import connecta4.utils.Colores;
 
 public class Texto {
     public static void principal() {

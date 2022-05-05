@@ -1,11 +1,15 @@
-package reptes_programacio.Conecta4;
+package connecta4.menu;
+
+import connecta4.board.Board;
+import connecta4.player.Player;
+import connecta4.player.PlayerManager;
+import connecta4.utils.Texto;
 
 import java.util.Scanner;
 
-public class Conecta4 {
+public class Game {
     private static Scanner scanner = new Scanner(System.in);
-    private static Tablero tablero = new Tablero();
-    private static int turno = 42;
+    private static Board board = new Board();
 
     public static void jugar() {
         try {
@@ -33,7 +37,7 @@ public class Conecta4 {
 
     private static void imprimirTableroJugador() {
         Texto.separacion();
-        tablero.imprimirTablero();
+        board.imprimirTablero();
         Texto.enQueColumnaQuieresMeterUnaFicha();
     }
     public static void juegaJugador(Player player) {
@@ -57,12 +61,12 @@ public class Conecta4 {
     }
 
     public static void destapaCasilla(int columna, Player player) {
-        tablero.destaparCasillaJugador(columna, player);
+        board.destaparCasillaJugador(columna, player);
     }
     public static void compruebaSiHasGanado(Player player) {
-        if (tablero.comprobarSiHasGanado(player)) {
+        if (board.comprobarSiHasGanado(player)) {
             Texto.separacion();
-            tablero.imprimirTablero();
+            board.imprimirTablero();
             Texto.hasGanado(player);
             System.exit(0);
         }

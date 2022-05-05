@@ -1,7 +1,7 @@
-package reptes_programacio.Buscaminas;
+package reptes_programacio.buscaminas;
 
 
-import static reptes_programacio.Buscaminas.Elegir.*;
+import static reptes_programacio.buscaminas.Elegir.*;
 
 public class Juego {
 
@@ -104,10 +104,10 @@ public class Juego {
     }
 
     public static int introducirFilas() {
-        return Elegir.eleccionCasilla(tablero.getFilasTablero(), Texto.introduceFila());
+        return eleccionCasilla(tablero.getFilasTablero(), Texto.introduceFila());
     }
 
     public static int introducirColumnas() {
-        return Elegir.eleccionCasilla(tablero.getColumnasTablero(), Texto.introduceColumna());
+        return eleccionCasilla(tablero.getColumnasTablero(), Texto.introduceColumna());
     }
 }
