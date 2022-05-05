@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Conecta4" />
         <module name="Buscaminas" />
+        <module name="Connect4" />
+        <module name="Programacio" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Buscaminas" target="17" />
+      <module name="Conecta4" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
