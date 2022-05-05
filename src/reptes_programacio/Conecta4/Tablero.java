@@ -129,8 +129,10 @@ public class Tablero {
         return false;
     }
 
-    // Comprobar 4 en raya diagonales de izquierda a derecha
     public boolean comprobar4enRayasDiagonales(int fila, int columna, Jugador jugador) {
+        int contador = 0;
+
         return false;
     }
+
 }

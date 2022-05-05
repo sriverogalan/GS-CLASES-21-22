@@ -7,6 +7,7 @@ public class Conecta4 {
     private static Jugador jugador1 = new Jugador("");
     private static Jugador jugador2 = new Jugador("");
     private static Tablero tablero = new Tablero();
+    private static int turno = 42;
 
     public static void jugar() {
         try {
