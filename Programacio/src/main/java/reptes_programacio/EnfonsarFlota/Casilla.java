@@ -1,4 +1,4 @@
-package reptes_programacio.EnfonsarFlota;
+package main.java.reptes_programacio.EnfonsarFlota;
 
 public class Casilla {
     public boolean tapada = true;
