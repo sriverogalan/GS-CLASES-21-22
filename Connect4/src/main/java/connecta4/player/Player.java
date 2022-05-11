@@ -10,7 +10,6 @@ public class Player {
     private String color;
     private int wins;
     private int loses;
-
     public Player(String name, String color){
         this.id = id;
         this.name = name;
@@ -18,8 +17,7 @@ public class Player {
         this.wins = wins;
         this.loses = loses;
     }
-
-    public String getInitials(){
+    public String getInitial(){
         return name.substring(0,1);
     }
 }

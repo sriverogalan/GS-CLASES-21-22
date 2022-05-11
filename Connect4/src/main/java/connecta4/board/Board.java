@@ -2,142 +2,141 @@ package connecta4.board;
 
 import connecta4.box.Box;
 import connecta4.player.Player;
-import connecta4.utils.Colores;
-import connecta4.utils.Texto;
 
-import java.util.Scanner;
-
-public class Board {
-    private Scanner scanner = new Scanner(System.in);
-    private final Box[][] tablero;
-    private final int filas = 6; // 6 filas
-    private final int columnas = 7; // 7 columnas
-
+public class Board { 
+    private final Box[][] board;
+    private final int rows = 6; // 6 filas
+    private final int columns = 7; // 7 columnas
     public Board() {
-        tablero = new Box[filas][columnas];
+        board = new Box[rows][columns];
         /*GENERAMOS EL TABLERO*/
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero[i].length; j++) {
-                tablero[i][j] = new Box();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j] = new Box();
             }
         }
     }
-
-    public void imprimirTablero() {
-        int contadorHorizontal = 0;
-        for (int i = 0; i < tablero.length; i++) {
+    public void print() {
+        int horizontalCounter = 0;
+        for (int i = 0; i < board.length; i++) {
             if (i == 0) {
-                imprimirNumerosVerticalmenteTablero(i);
+                printNumbersVerticaly(i);
             }
-            System.out.print(" ( " + contadorHorizontal++ + " ) ");
-            for (int j = 0; j < tablero[i].length; j++) {
-                if (!tablero[i][j].isBuida()) {
-                    System.out.print(" ( - ) ");
-                } else if (tablero[i][j].isTieneFichaJugador1()) {
-                    System.out.print(Colores.ROJO + " ( X ) " + Colores.RESET);
-                } else if (tablero[i][j].isTieneFichaJugador2()) {
-                    System.out.print(Colores.AZUL + " ( O ) " + Colores.RESET);
-                }
+            System.out.print(" ( " + horizontalCounter++ + " ) ");
+            for (int j = 0; j < board[i].length; j++) {
+                System.out.print(board[i][j]);
             }
             System.out.println();
         }
     }
-
-    public void imprimirNumerosVerticalmenteTablero(int i) {
+    public void printNumbersVerticaly(int i) {
         int contadorVertical = 0;
-        for (int e = 0; e < tablero[i].length; e++) {
+        for (int e = 0; e < board[i].length; e++) {
             if (e == 0) {
                 System.out.print("       ");
             }
             System.out.print(" ( " + contadorVertical + " ) ");
             contadorVertical++;
-            if (e == tablero[i].length - 1) {
+            if (e == board[i].length - 1) {
                 System.out.println();
             }
         }
     }
-
-    public void destaparCasillaJugador(int columna, Player player) {
-        int fila = filas - 1;
-        while (tablero[fila][columna].isBuida()) {
-            if (tablero[0][columna].isBuida() || tablero[0][columna].isTieneFichaJugador1() || tablero[0][columna].isTieneFichaJugador2()) {
-                Texto.escogeOtraColumna();
-                destaparCasillaJugador(scanner.nextInt(), player);
-                break;
+    public boolean uncover(int columna, Player player) {
+        for (int i = board.length - 1; i >= 0; i--) {
+            if (board[i][columna].isEmpty()) {
+                board[i][columna].setEmpty(false);
+                board[i][columna].setName(player.getInitial());
+                board[i][columna].setColor(player.getColor());
+                return true;
+            } 
+        }
+        return false;
+    }
+    // isFull()
+    public boolean isDraw() {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j].isEmpty()) {
+                    return false;
+                }
             }
-            fila--;
         }
-        tablero[fila][columna].setBuida(true); //destapamos la casilla
-        if (player.isJugador1()) {
-            tablero[fila][columna].setTieneFichaJugador1(true); //ponemos la ficha del jugador
-        } else {
-            tablero[fila][columna].setTieneFichaJugador2(true); //ponemos la ficha del jugador
-        }
+        return true;
     }
 
-    public boolean comprobarSiHasGanado(Player player) {
-        for (int i = 0; i < tablero.length; i++) {
-            for (int j = 0; j < tablero[i].length; j++) {
-                if (tablero[i][j].isTieneFichaJugador1()) {
-                    if (comprobar4enRayaHorizontal(i, j, player)) {
-                        return true;
-                    } else if (comprobar4enRayaVertical(i, j, player)) {
-                        return true;
-                    } else if (comprobar4enRayasDiagonales(i, j, player)) {
-                        return true;
+    // isWin()
+    public boolean isWin(Player player) {
+        // horizontal
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j].isEmpty()) {
+                    continue;
+                }
+                if (board[i][j].getName() == player.getInitial()) {
+                    if (j + 3 < board[i].length) {
+                        if (board[i][j].getName() == board[i][j + 1].getName() &&
+                            board[i][j].getName() == board[i][j + 2].getName() &&
+                            board[i][j].getName() == board[i][j + 3].getName()) {
+                            return true;
+                        }
                     }
-                } else if (tablero[i][j].isTieneFichaJugador2()) {
-                    if (comprobar4enRayaHorizontal(i, j, player)) {
-                        return true;
-                    } else if (comprobar4enRayaVertical(i, j, player)) {
-                        return true;
-                    } else if (comprobar4enRayasDiagonales(i, j, player)) {
-                        return true;
+                }
+            }
+        }
+        // vertical
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j].isEmpty()) {
+                    continue;
+                }
+                if (board[i][j].getName() == player.getInitial()) {
+                    if (i + 3 < board.length) {
+                        if (board[i][j].getName() == board[i + 1][j].getName() &&
+                            board[i][j].getName() == board[i + 2][j].getName() &&
+                            board[i][j].getName() == board[i + 3][j].getName()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        // diagonal izquierda
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j].isEmpty()) {
+                    continue;
+                } else {
+                    if (board[i][j].getName() == player.getInitial()) {
+                        if (i + 3 < board.length && j + 3 < board[i].length) {
+                            if (board[i][j].getName() == board[i + 1][j + 1].getName() &&
+                                board[i][j].getName() == board[i + 2][j + 2].getName() &&
+                                board[i][j].getName() == board[i + 3][j + 3].getName()) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // diagonal derecha
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (board[i][j].isEmpty()) {
+                    continue;
+                } else {
+                    if (board[i][j].getName() == player.getInitial()) {
+                        if (i + 3 < board.length && j - 3 >= 0) {
+                            if (board[i][j].getName() == board[i + 1][j - 1].getName() &&
+                                board[i][j].getName() == board[i + 2][j - 2].getName() &&
+                                board[i][j].getName() == board[i + 3][j - 3].getName()) {
+                                return true;
+                            }
+                        }
                     }
                 }
             }
         }
         return false;
     }
-
-    public boolean comprobar4enRayaHorizontal(int fila, int columna, Player player) {
-        int contador = 0;
-        for (int i = 0; i < tablero.length; i++) {
-            if (tablero[fila][i].isTieneFichaJugador1() && player.isJugador1()) {
-                contador++;
-            } else if (tablero[fila][i].isTieneFichaJugador2() && !player.isJugador1()) {
-                contador++;
-            } else {
-                contador = 0;
-            }
-            if (contador == 4) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean comprobar4enRayaVertical(int fila, int columna, Player player) {
-        int contador = 0;
-        for (int i = 0; i < tablero.length; i++) {
-            if (tablero[i][columna].isTieneFichaJugador1() && player.isJugador1()) {
-                contador++;
-            } else if (tablero[i][columna].isTieneFichaJugador2() && !player.isJugador1()) {
-                contador++;
-            } else {
-                contador = 0;
-            }
-            if (contador == 4) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean comprobar4enRayasDiagonales(int fila, int columna, Player player) {
-        int contador = 0;
-
-        return false;
-    }
-
 }

@@ -1,28 +1,24 @@
 package connecta4.box;
 
+import connecta4.utils.Colors;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Box {
-    private boolean isBuida;
+    private boolean isEmpty;
     private String name;
     private String color;
 
-    public Box(){
-        isBuida = false;
-        color = "";
+    public Box() {
+        isEmpty = true; // box is not empty
+        name = "";
     }
 
-    public boolean isBuida() {
-        return isBuida;
-    }
-
-    public void setBuida(boolean buida) {
-        isBuida = buida;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
+    @Override
+    public String toString() {
+        if (isEmpty) return " ( - ) ";
+        else return color + " ( " + name + " ) " + Colors.RESET;
     }
 }
