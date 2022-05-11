@@ -53,7 +53,6 @@ public class Board {
         }
         return false;
     }
-    // isFull()
     public boolean isDraw() {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
@@ -65,7 +64,6 @@ public class Board {
         return true;
     }
 
-    // isWin()
     public boolean isWin(Player player) {
         // horizontal
         for (int i = 0; i < board.length; i++) {
