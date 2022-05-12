@@ -11,6 +11,7 @@
     <modules>
         <module>Buscaminas</module>
         <module>Buscaminas</module>
+        <module>Buscaminas-old</module>
     </modules>
 
     <properties>

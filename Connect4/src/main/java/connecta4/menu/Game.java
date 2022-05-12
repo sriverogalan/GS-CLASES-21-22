@@ -47,18 +47,10 @@ public class Game {
     public static void turnPlayer(int playerId) {
         printBoard();
         Text.turnPlayer(Objects.requireNonNull(PlayerManager.getPlayerById(playerId)));
-        if (!board.uncover(chooseInt(0,6), PlayerManager.getPlayerById(playerId))) {
+        int column = chooseInt(0,6);
+        if (!board.insert(column, PlayerManager.getPlayerById(playerId))) {
             Text.errorChooseColumns();
             turnPlayer(playerId);
-        } // uncover card
-        if (board.isDraw()) {
-            Text.draw();
-            System.exit(1);
-        } // draw
-        if (board.isWin()) {
-            board.print();
-            Text.win(Objects.requireNonNull(PlayerManager.getPlayerById(playerId)));
-            System.exit(1);
-        } // win
+        }
     }
 }
