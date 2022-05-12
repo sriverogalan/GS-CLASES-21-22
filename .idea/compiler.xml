@@ -10,6 +10,7 @@
         <module name="Buscaminas" />
         <module name="Connect4" />
         <module name="Programacio" />
+        <module name="Buscaminas-old" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
