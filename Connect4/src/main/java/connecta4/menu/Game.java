@@ -9,27 +9,22 @@ import connecta4.utils.Text;
 import java.util.Objects;
 import java.util.Scanner;
 
+import static connecta4.utils.Choose.*;
+
 public class Game {
-    private static Scanner scanner = new Scanner(System.in);
-    private static Board board = new Board();
-
-    public static void jugar() {
-        try {
-            Text.principal();
-            createPlayers(2);
-            startGame();
-        } catch (Exception e) {
-            jugar();
-        }
+    private static final Board board = new Board();
+    public static void play() {
+        Text.principal();
+        createPlayers(2);
+        startGame();
     }
-
-    public static void createPlayers(int numeroJugadores) {
-        for (int i = 0; i < numeroJugadores; i++) {
+    public static void createPlayers(int numPlayers) {
+        for (int i = 0; i < numPlayers; i++) {
             Scanner scan = new Scanner(System.in);
             Text.chooseName(i);
-            String name = scanner.nextLine();
+            String name = scan.nextLine();
             Text.chooseColor(i);
-            switch (scanner.nextInt()) {
+            switch (chooseInt(1,4)) {
                 case 1 -> PlayerManager.addPlayer(new Player(name, Colors.RED));
                 case 2 -> PlayerManager.addPlayer(new Player(name, Colors.GREEN));
                 case 3 -> PlayerManager.addPlayer(new Player(name, Colors.PURPLE));
@@ -38,37 +33,32 @@ public class Game {
             }
         }
     }
-
     private static void printBoard() {
         Text.separation();
         board.print();
         Text.columnToWhichYouWantToInSertCard();
     }
-
     public static void startGame() {
-        int column;
         for (int i = 0; i < 21; i++) {
             turnPlayer(1);
             turnPlayer(2);
         }
     }
-
     public static void turnPlayer(int playerId) {
-        Scanner scan = new Scanner(System.in);
         printBoard();
         Text.turnPlayer(Objects.requireNonNull(PlayerManager.getPlayerById(playerId)));
-        if (!board.uncover(scan.nextInt(), PlayerManager.getPlayerById(playerId))) {
+        if (!board.uncover(chooseInt(0,6), PlayerManager.getPlayerById(playerId))) {
             Text.errorChooseColumns();
             turnPlayer(playerId);
-        }
+        } // uncover card
         if (board.isDraw()) {
             Text.draw();
-            System.exit(0);
-        }
-        if (board.isWin(PlayerManager.getPlayerById(playerId))) {
+            System.exit(1);
+        } // draw
+        if (board.isWin()) {
             board.print();
-            Text.win(PlayerManager.getPlayerById(playerId));
-            System.exit(0);
-        }
+            Text.win(Objects.requireNonNull(PlayerManager.getPlayerById(playerId)));
+            System.exit(1);
+        } // win
     }
 }

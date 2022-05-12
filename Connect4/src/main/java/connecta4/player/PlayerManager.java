@@ -12,17 +12,6 @@ public class PlayerManager {
         player.setId(players.size() + 1);
         players.add(player);
     }
-    public static void removePlayer(Player player) {
-        players.remove(player);
-    }
-    public static Player getPlayerByName(String name) {
-        for (Player player : players) {
-            if (player.getName().equals(name)) {
-                return player;
-            }
-        }
-        return null;
-    }
     public static Player getPlayerById(int id) {
         for (Player player : players) {
             if (player.getId() == id) {
@@ -31,5 +20,4 @@ public class PlayerManager {
         }
         return null;
     }
-    // GET PLAYERS
 }
