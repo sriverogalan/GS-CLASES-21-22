@@ -19,8 +19,8 @@ public class Text {
         System.out.println("Introduce el color del jugador " + (i + 1));
         System.out.println("1. Rojo\n"+
                             "2. Verde\n"+
-                            "3. Purple\n"+
-                            "4. Yellow\n");
+                            "3. Lila\n"+
+                            "4. Amarillo\n");
     }
     public void chooseName(int i) {
         System.out.println("Introduce el nombre del jugador " + (i + 1));

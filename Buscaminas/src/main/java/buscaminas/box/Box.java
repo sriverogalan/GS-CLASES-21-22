@@ -28,7 +28,7 @@ public class Box {
         } else if (isFlag) {
             return "( F )";
         } else {
-            return "( X )";
+            return "( - )";
         }
     }
 }
