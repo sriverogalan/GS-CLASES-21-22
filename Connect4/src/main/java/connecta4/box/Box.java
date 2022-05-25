@@ -27,6 +27,6 @@ public class Box {
         if (isEmpty())
             return " ( - ) ";
 
-        return player.getColor() + " ( " + player.getName() + " ) " + Colors.RESET;
+        return player.getColor() + " ( " + player.getInitial() + " ) " + Colors.RESET;
     }
 }

@@ -18,7 +18,7 @@ public class Board {
         }
     }
     public void print() {
-        printNumbersVerticaly();
+        printNumbersHorizontaly();
         for (int i = 0; i < board.length; i++) {
             System.out.print(" ( " + i + " ) ");
             for (int j = 0; j < board[i].length; j++) {
@@ -27,7 +27,7 @@ public class Board {
             System.out.println();
         }
     }
-    private void printNumbersVerticaly() {
+    private void printNumbersHorizontaly() {
         for (int e = 0; e < board[0].length; e++) {
             if (e == 0) {
                 System.out.print("       ");
@@ -38,7 +38,6 @@ public class Board {
             }
         }
     }
-
     public boolean insert(int column, Player player) {
         for (int i = board.length - 1; i >= 0; i--) {
             if (board[i][column].isEmpty()) {
