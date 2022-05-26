@@ -13,6 +13,7 @@
         <module>Buscaminas</module>
         <module>Buscaminas-old</module>
         <module>Domino</module>
+        <module>Domino</module>
     </modules>
 
     <properties>
